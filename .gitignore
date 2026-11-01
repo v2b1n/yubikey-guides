@@ -1,0 +1,7 @@
+# Secret-bearing output from provision-yubikey-piv.sh (never commit)
+yubikey-piv-*.txt
+
+# Temporary private-key material and full secret-key backups
+*.pem
+gnupg-backup.tar.gz
+*.key
