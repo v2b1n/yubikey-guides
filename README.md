@@ -8,6 +8,7 @@ Practical, security-conscious setup guides for hardware-backed SSH access and Gi
 | --- | --- |
 | **Security Key by Yubico**, macOS — FIDO2 `ed25519-sk`, SSH and Git SSH signing | [Security Key / macOS](yubico-security-key-ssh-macos.md) |
 | **YubiKey 5**, macOS — PIV-based SSH and optional OpenPGP signing/decryption | [YubiKey 5 / macOS](yubikey-piv-ssh-and-openpgp-macos.md) |
+| **YubiKey 5**, macOS — OpenPGP key setup and transfer from a local keyring | [OpenPGP setup / macOS](yubikey-openpgp-setup-macos.md) |
 | **YubiKey 5**, Debian — PIV SSH plus OpenPGP interaction and PC/SC recovery | [YubiKey 5 / Debian](yubikey-piv-ssh-and-gpg-setup-debian.md) |
 | **YubiKey 5**, macOS — short PIV provisioning and checks | [Quick reference](yubikey-piv-ssh-macos-quick-reference.md) |
 | **YubiKey 5**, macOS — interactive PIV key provisioning | [Provisioning script](provision-yubikey-piv.sh) |
@@ -17,7 +18,7 @@ Practical, security-conscious setup guides for hardware-backed SSH access and Gi
 
 **Security Key by Yubico** is a straightforward choice for modern SSH and Git using FIDO2. SSH uses a FIDO-specific `sk-ssh-ed25519@openssh.com` public key, and the local resident-credential handle should be protected with a passphrase. The linked macOS guide explains 12-hour `ssh-agent` caching and the optional `verify-required` trade-off.
 
-**YubiKey 5** adds **PIV** and **OpenPGP** applications. PIV permits ordinary, non-FIDO SSH key formats such as RSA or, with compatible device/provider versions, Ed25519; it can **generate a new non-exportable private key** or **import a compatible existing private key**. Importing allows continuity of an existing SSH identity or provisioning multiple tokens with the same key, but the original secret key and its backup become additional sensitive assets. OpenPGP has separate signing/encryption keys, allowing **SSH/PIV for access** and **OpenPGP for Git/email signing**.
+**YubiKey 5** adds **PIV** and **OpenPGP** applications. PIV permits ordinary, non-FIDO SSH key formats such as RSA or, with compatible device/provider versions, Ed25519; it can **generate a new non-exportable private key** or **import a compatible existing private key**. Importing allows continuity of an existing SSH identity or provisioning multiple tokens with the same key, but the original secret key and its backup become additional sensitive assets. OpenPGP has separate signing/encryption keys, allowing **SSH/PIV for access** and **OpenPGP for Git/email signing**. The [macOS OpenPGP setup guide](yubikey-openpgp-setup-macos.md) covers local key creation, backup, transfer to the token, PINs, touch policy, and functional checks.
 
 These are alternative architectures, not interchangeable commands. In particular, hardware PIV Ed25519 capability does **not** automatically guarantee OpenSSH/PKCS#11 interoperability on a particular macOS build: perform the compatibility and end-to-end signing tests in the guides before relying on it.
 
